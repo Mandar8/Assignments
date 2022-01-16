@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="stylesheet" href="css/index.css">
+   <link rel="stylesheet" href="css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Fetch ApI</title>
+</head>
+<body>
+    <div class="header-container" id="header">
+<h1 style="text-align: center;">Fetch API</h1>
+    </div>
+<div class="main-container" id="maincontainer">
+
+</div>
+<script src="js/index.js">
+
+const getData = async()=>{
+    try {
+        const data =  await fetch("https://api.openbrewerydb.org/breweries")
+        const books = await data.json()
+     
+        document.getElementById('maincontainer').innerHTML =""
+        books.forEach((book )=> {
+            displayData(book)
+            
+        });
+
+    }catch(err){
+
+        console.log(err)
+    };
+
+}
+getData()
+const displayData = (obj)=>{
+  document.getElementById('maincontainer').innerHTML += `
+ <div class = "container">
+ <h3 class="red" > Brewery City :<span>${obj.city}</span></h3>
+ <p class= "para-red"> Brewery Type: <span>${obj.brewery_type}</span></p>
+ <p class= "para-red"> Brewery Phone : <span> ${obj.phone}</span></p>
+ <p class= "para-red"> Brewery State : <span> ${obj.state}</span></p>
+ `
+}
+</script>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
+//css code
+
+body {
+    color: blue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    background-color: blue;
+
+}
+
+.header-container{
+    text-align: center;
+    margin-top: 20px;
+    background: linear-gradient(to bottom, yellow,blue,red ) ;
+
+}
+.main-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: lem;
+    padding: 0.5em;
+    margin: 0 auto;
+    background : linear-gradient(red);
+    border: 5px solid black;
+}
+.container{
+    background-color: rgb(72, 37, 167);
+    border: 5px black solid;
+}
+
